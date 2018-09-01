@@ -3326,6 +3326,10 @@ hoek@5.x.x:
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-5.0.4.tgz#0f7fa270a1cafeb364a4b2ddfaa33f864e4157da"
 
+holakit@^0.23.0-1:
+  version "0.23.0-1"
+  resolved "https://registry.yarnpkg.com/holakit/-/holakit-0.23.0-1.tgz#32607093b65e64a8f8b5b5c1415895d3e6e1dbe4"
+
 hosted-git-info@^2.1.4:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.7.1.tgz#97f236977bd6e125408930ff6de3eec6281ec047"
