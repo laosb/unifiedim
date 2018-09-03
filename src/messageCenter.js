@@ -1,4 +1,4 @@
-import { find, remove } from 'lodash'
+import { find, filter, remove } from 'lodash'
 import * as sourceTypes from '@/sources/'
 import store from './store'
 
@@ -23,8 +23,16 @@ const MessageCenter = {
   stopSource (name) {
     return this.getSource(name).stop()
   },
+  startAllSources () {
+    return this.
+  } 
   newMessage (uMsg) {
-    console.log('[MessageCenter] New message', uMsg)
+    const sourcesToForward = filter(this.sources, source => {
+      return source.status === 'running' && source.name !== uMsg.source.name
+    })
+    console.log(`[MessageCenter] New message arrived from ${uMsg.source.name}, forwarding to`, sourcesToForward)
+    sourcesToForward.forEach(source => source.postMessage(uMsg))
+    console.log('[MessageCenter] New message posted', uMsg)
   },
   newLog (source, log) {
     store.commit('logSource', { source, log })

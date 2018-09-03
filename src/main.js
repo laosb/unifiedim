@@ -25,5 +25,15 @@ MessageCenter.init([
       group: '***REMOVED***'
     },
     type: 'NeteaseIM'
+  },
+  {
+    name: 'Frightened @ QQ',
+    symbol: 'Q',
+    params: {
+      wsBaseUrl: '***REMOVED***',
+      accessToken: '***REMOVED***',
+      group: '***REMOVED***'
+    },
+    type: 'CoolQHTTP'
   }
 ])

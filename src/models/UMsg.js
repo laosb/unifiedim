@@ -5,6 +5,7 @@ export default class UMsg {
       symbol: source.symbol
     }
     this.sender = {
+      id: sender.id,
       displayName: sender.displayName,
       info: sender.info
     }

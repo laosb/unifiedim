@@ -1,7 +1,7 @@
 <template>
   <div class="hola-layout-main hola-card-stack">
     <div class="hola-card">
-      <h2 class="hola-card-title">Frightened - Bullet Message</h2>
+      <h2 class="hola-card-title">{{source.name}}</h2>
       <a
         v-if="source.status === 'stopped'"
         href="#"
@@ -35,10 +35,8 @@
 import MessageCenter from '@/messageCenter'
 
 export default {
-  data () {
-    return {
-      source: MessageCenter.getSource(this.$route.params.source)
-    }
+  computed: {
+    source () { return MessageCenter.getSource(this.$route.params.source) }
   }
 }
 </script>
