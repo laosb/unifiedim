@@ -24,8 +24,13 @@ const MessageCenter = {
     return this.getSource(name).stop()
   },
   startAllSources () {
-    return this.
-  } 
+    return filter(this.sources, source => source.status !== 'running')
+      .forEach(source => source.start())
+  },
+  stopAllSources () {
+    return filter(this.sources, source => source.status !== 'stopped')
+      .forEach(source => source.stop())
+  },
   newMessage (uMsg) {
     const sourcesToForward = filter(this.sources, source => {
       return source.status === 'running' && source.name !== uMsg.source.name

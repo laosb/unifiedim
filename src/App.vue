@@ -17,6 +17,8 @@
         <h1>Unified IM</h1>
         <p>Easygoing Unified IM Platform.</p>
         <a href="styleguide/" class="hola-button hola-button-ghost">Add Source</a>
+        <a href="#" @click.prevent="msgCenter.startAllSources()" class="hola-button hola-button-ghost">Start All</a>
+        <a href="#" @click.prevent="msgCenter.stopAllSources()" class="hola-button hola-button-ghost">Stop All</a>
       </div>
     </div>
     <div class="hola-container hola-layout-container hola-layout-container-sidebar-right">
@@ -24,8 +26,11 @@
       <div class="hola-layout-sidebar">
         <div class="hola-card">
           <ul class="hola-vmenu">
-            <li v-for="source in sources" :key="source.name" class="hola-vmenu-item">
-              <router-link :to="{ name: 'source', params: { source: source.name } }">{{source.name}}</router-link>
+            <li v-for="source in msgCenter.sources" :key="source.name" class="hola-vmenu-item">
+              <router-link :to="{ name: 'source', params: { source: source.name } }">
+                {{source.name}}
+                <span class="hola-badge">{{source.status.toUpperCase()}}</span>
+              </router-link>
             </li>
           </ul>
         </div>
@@ -45,7 +50,7 @@ import MessageCenter from './messageCenter'
 export default {
   data () {
     return {
-      sources: MessageCenter.sources
+      msgCenter: MessageCenter
     }
   }
 }
