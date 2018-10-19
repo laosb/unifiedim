@@ -15,25 +15,4 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
-MessageCenter.init([
-  {
-    name: 'Frightened @ Bullet Message',
-    symbol: '🚅',
-    params: {
-      account: '***REMOVED***',
-      token: '***REMOVED***-r',
-      group: '***REMOVED***'
-    },
-    type: 'NeteaseIM'
-  },
-  {
-    name: 'Frightened @ QQ',
-    symbol: 'Q',
-    params: {
-      wsBaseUrl: '***REMOVED***',
-      accessToken: '***REMOVED***',
-      group: '***REMOVED***'
-    },
-    type: 'CoolQHTTP'
-  }
-])
+// Call MessageCenter.init() yourself.
