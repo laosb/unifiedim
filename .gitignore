@@ -2,6 +2,7 @@
 node_modules
 /dist
 secrets
+..bfg-report
 
 # local env files
 .env.local
