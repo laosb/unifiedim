@@ -1,13 +1,22 @@
 import { find, filter, remove } from 'lodash'
 import * as sourceTypes from '@/sources/'
+import * as plugins from '@/plugins/'
 import store from './store'
 
 const MessageCenter = {
   sources: [],
+  plugins: {},
   init (sources) {
+    console.log('[MessageCenter] Initiating sources...')
     sources.forEach(sourceObj => {
       const sourceInst = new sourceTypes[sourceObj.type](sourceObj)
       this.sources.push(sourceInst)
+    })
+
+    console.log('[MessageCenter] Initiating plugins...')
+    Object.keys(plugins).forEach(pluginName => {
+      console.log(`[MessageCenter] Initiating plugin ${pluginName}`)
+      plugins[pluginName](MessageCenter)
     })
   },
   getSource (name) { return find(this.sources, ['name', name]) },
@@ -32,12 +41,7 @@ const MessageCenter = {
       .forEach(source => source.stop())
   },
   newMessage (uMsg) {
-    const sourcesToForward = filter(this.sources, source => {
-      return source.status === 'running' && source.name !== uMsg.source.name
-    })
-    console.log(`[MessageCenter] New message arrived from ${uMsg.source.name}, forwarding to`, sourcesToForward)
-    sourcesToForward.forEach(source => source.postMessage(uMsg))
-    console.log('[MessageCenter] New message posted', uMsg)
+    Object.values(this.plugins).forEach(({ onMessage }) => onMessage(uMsg))
   },
   newLog (source, log) {
     store.commit('logSource', { source, log })
